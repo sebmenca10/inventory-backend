@@ -1,0 +1,28 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="001-create-users" author="dev">
+        <createTable tableName="users">
+            <column name="id" type="uuid" defaultValueComputed="gen_random_uuid()">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password_hash" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar(50)" defaultValue="viewer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueDate="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" type="timestamp" defaultValueDate="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+     <include file="changeset-products.xml" relativeToChangelogFile="true"/>
+     <include file="changeset-audit.xml" relativeToChangelogFile="true"/>
+     <include file="changeset-idempotency.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

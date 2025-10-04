@@ -1,0 +1,22 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+  <changeSet id="004-create-idempotency" author="dev">
+    <createTable tableName="idempotency_keys">
+      <column name="id" type="uuid" defaultValueComputed="gen_random_uuid()">
+        <constraints primaryKey="true" />
+      </column>
+      <column name="key" type="varchar(100)" />
+      <column name="path" type="varchar(255)" />
+      <column name="method" type="varchar(20)" />
+      <column name="response" type="jsonb" />
+      <column name="status" type="int" />
+      <column name="created_at" type="timestamptz" defaultValueDate="CURRENT_TIMESTAMP" />
+    </createTable>
+
+    <addUniqueConstraint columnNames="key" constraintName="uk_idempotency_key" tableName="idempotency_keys"/>
+  </changeSet>
+</databaseChangeLog>

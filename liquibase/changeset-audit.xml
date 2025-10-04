@@ -1,0 +1,22 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+  <changeSet id="003-create-audit-logs" author="dev">
+    <createTable tableName="audit_logs">
+      <column name="id" type="uuid" defaultValueComputed="gen_random_uuid()">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="user_id" type="uuid"/>
+      <column name="user_email" type="varchar(255)"/>
+      <column name="action" type="varchar(50)"/>
+      <column name="entity" type="varchar(255)"/>
+      <column name="entity_id" type="varchar(255)"/>
+      <column name="before" type="jsonb"/>
+      <column name="after" type="jsonb"/>
+      <column name="created_at" type="timestamptz" defaultValueDate="CURRENT_TIMESTAMP"/>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>
