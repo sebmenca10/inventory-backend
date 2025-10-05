@@ -1,4 +1,4 @@
-🧠 Inventory Backend — Reto Técnico MR Recluta
+🧠 Inventory Backend
 <p align="center"> <a href="https://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="100" alt="Nest Logo" /></a> </p> <p align="center"> <b>API Backend desarrollada con NestJS + TypeScript + PostgreSQL</b><br/> Cumple con autenticación JWT, roles RBAC, auditoría, idempotencia, control de concurrencia, pruebas automatizadas y prueba de carga. </p>
 
 🚀 Descripción General
@@ -26,8 +26,6 @@ Guards globales JwtAuthGuard y RolesGuard
 
 CRUD completo con búsqueda, filtros, ordenamiento y paginación en servidor
 
-Validaciones con class-validator y ValidationPipe
-
 Importar y exportar CSV con validación y reporte de errores
 
 🧾 Auditoría
@@ -48,7 +46,7 @@ Resultados cacheados en tabla idempotency_keys
 
 Implementado con @VersionColumn() (TypeORM)
 
-Uso de headers ETag e If-Match
+Uso de headers If-Match
 
 Devuelve 409 Conflict si otro usuario actualizó el registro
 
@@ -66,7 +64,7 @@ Integración: API + BD con TypeORM
 
 E2E: flujo completo (login → CRUD → export CSV)
 
-Swagger/OpenAPI: /api/docs
+Swagger: /api/docs
 
 ⚡ Prueba de Carga (Autocannon)
 
@@ -120,7 +118,7 @@ npm run test:cov
 
 📘 Documentación
 
-Swagger/OpenAPI disponible en:
+Swagger disponible en:
 
 http://localhost:3000/api/docs
 
@@ -130,7 +128,6 @@ Para ejecutar la prueba de carga:
 
 node src/test/load-test.js
 
-
 Resultados generados en:
 
 load-test-result.json
@@ -139,4 +136,3 @@ load-test-result.json
 
 Sebastián Mendoza
 Desarrollador FullStack
-💻 Proyecto Reto Técnico MR Recluta
