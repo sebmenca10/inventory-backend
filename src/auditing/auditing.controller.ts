@@ -4,7 +4,6 @@ import { Roles } from '../common/decorators/roles.decorator';
 import type { Response } from 'express';
 import { Res } from '@nestjs/common';
 import { parseAsync } from 'json2csv';
-
 @Controller('audit')
 export class AuditingController {
     constructor(private readonly auditingService: AuditingService) { }

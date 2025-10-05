@@ -1,4 +1,3 @@
-// src/common/interceptors/request-context.interceptor.ts
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { RequestContext } from '../request-context';

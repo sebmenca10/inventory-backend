@@ -31,7 +31,6 @@ export class ProductsController {
 
     @ApiOperation({ summary: 'Listar productos' })
     @ApiResponse({ status: 200, description: 'Lista de productos retornada correctamente' })
-    // Lectura: todos los roles pueden leer
     @Roles('admin', 'operator', 'viewer')
     @Get()
     list(
@@ -53,7 +52,6 @@ export class ProductsController {
 
     @ApiOperation({ summary: 'Crear producto' })
     @ApiResponse({ status: 201, description: 'Producto creado con éxito' })
-    // Crear: admin y operator
     @Roles('admin', 'operator')
     @Post()
     @UseInterceptors(IdempotencyInterceptor)
@@ -66,7 +64,6 @@ export class ProductsController {
 
     @ApiOperation({ summary: 'Crear producto' })
     @ApiResponse({ status: 201, description: 'Producto creado con éxito' })
-    // Editar: admin y operator
     @Roles('admin', 'operator')
     @Patch(':id')
     async update(
@@ -78,7 +75,6 @@ export class ProductsController {
         return this.productsService.update(id, body, version);
     }
 
-    // Eliminar: solo admin
     @Roles('admin')
     @Delete(':id')
     remove(@Param('id') id: string) {
@@ -166,10 +162,15 @@ export class ProductsController {
     }
 
     @Roles('admin', 'operator', 'viewer')
+    @Get('categories')
+    async getCategories() {
+        return ['Electronics', 'Accessories', 'Office', 'Home', 'Storage']
+    }
+
+    @Roles('admin', 'operator', 'viewer')
     @Get(':id')
     async getOne(@Param('id') id: string, @Res() res: Response) {
         const product = await this.productsService.findOne(id);
-        // Si no existe, findOne ya lanza NotFoundException
         res.setHeader('ETag', product.version.toString());
         return res.json(product);
     }

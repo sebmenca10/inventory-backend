@@ -1,4 +1,3 @@
-// src/app.module.ts
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -9,6 +8,7 @@ import { ProductsModule } from './products/products.module';
 import { AuditingModule } from './auditing/auditing.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { DashboardModule } from './dashboard/dashboard.module'
 
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
@@ -27,6 +27,7 @@ import { RequestContextInterceptor } from './common/interceptors/request-context
     AuthModule,
     ProductsModule,
     AuditingModule,
+    DashboardModule,
   ],
   controllers: [AppController],
   providers: [

@@ -3,8 +3,6 @@ import {
 } from 'typeorm';
 import { AuditLog } from './audit.entity';
 import { RequestContext } from '../common/request-context';
-import { User } from '../users/user.entity';
-import { Product } from '../products/product.entity';
 
 @EventSubscriber()
 export class AuditSubscriber implements EntitySubscriberInterface {
@@ -36,7 +34,7 @@ export class AuditSubscriber implements EntitySubscriberInterface {
     const entityName =
       after?.constructor?.name ?? before?.constructor?.name ?? 'Unknown';
 
-    // 🚫 Ignorar entidades no relevantes
+    //Ignorar entidades no relevantes
     if (
       entityName === 'AuditLog' ||
       entityName === 'Object' ||

@@ -11,7 +11,7 @@ import { IdempotencyService } from './idempotency.service';
 
 @Injectable()
 export class IdempotencyInterceptor implements NestInterceptor {
-  constructor(private readonly idempotencyService: IdempotencyService) {}
+  constructor(private readonly idempotencyService: IdempotencyService) { }
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const req = context.switchToHttp().getRequest();
@@ -23,7 +23,7 @@ export class IdempotencyInterceptor implements NestInterceptor {
     return from(this.idempotencyService.find(key)).pipe(
       mergeMap((existing) => {
         if (existing) {
-          // ✅ ya existe → devolver respuesta previa
+          //ya existe → devolver respuesta previa
           res.status(existing.status).json(existing.response);
           return new Observable(); // detener flujo
         }

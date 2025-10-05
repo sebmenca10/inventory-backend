@@ -11,6 +11,6 @@ export const getTypeOrmConfig = async (
   password: configService.get('DB_PASS'),
   database: configService.get('DB_NAME'),
   autoLoadEntities: true,
-  synchronize: false, // usamos Liquibase para migraciones
+  synchronize: false,
   logging: ['error'],
 });
